@@ -1,0 +1,9 @@
+# Build artifacts
+obj/
+bin/
+*.o
+*.exe
+
+# Backup and temporary files
+*~
+*.bak

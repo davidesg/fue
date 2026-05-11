@@ -1,0 +1,144 @@
+# FUE 1.13.1
+
+**Free Univariate Estimation** — exact maximum likelihood estimation of univariate time series models.
+
+Copyright (C) 2026 A.B. Treadway & D.E. Guerrero  
+License: GNU General Public License v2 or later.
+
+---
+
+## Table of contents
+
+1. [Introduction](#introduction)
+2. [System requirements](#system-requirements)
+3. [File structure](#file-structure)
+4. [Building](#building)
+5. [Command-line usage](#command-line-usage)
+6. [Example](#example)
+7. [Integration with external editors](#integration-with-external-editors)
+8. [Bug reports](#bug-reports)
+
+---
+
+## Introduction
+
+FUE is a command-line program for estimating univariate time series models
+using Exact (Unconditional) Maximum Likelihood (EML). It follows the
+identification–estimation–validation cycle proposed by Box & Jenkins (1970),
+with later extensions.
+
+Two companion modules complete the univariate analysis toolkit:
+
+- **FUF** — forecasting
+- **gtk_fue** — GTK+3 graphical interface for FUE
+
+## System requirements
+
+- C compiler: GCC ≥ 9 (Linux/macOS) or MinGW-w64 (Windows)
+- [GNU Scientific Library (GSL)](https://www.gnu.org/software/gsl/) ≥ 2.0
+- [Gnuplot](http://www.gnuplot.info/) ≥ 5.0 (for high-resolution plots)
+- GNU Make
+
+On Debian/Ubuntu:
+
+```
+sudo apt install build-essential libgsl-dev gnuplot
+```
+
+On macOS (Homebrew):
+
+```
+brew install gsl gnuplot
+```
+
+## File structure
+
+```
+fue-1.13.1/
+├── src/        source files (.c)
+├── include/    header files (.h)
+├── obj/        compiled objects (created by make)
+├── bin/        executable (created by make)
+├── Makefile
+└── README.md
+```
+
+## Building
+
+### Linux (default)
+
+```
+make
+```
+
+The executable is placed in `bin/fue`.
+
+### macOS
+
+```
+make
+```
+
+If GSL is installed via Homebrew and `pkg-config` cannot find it:
+
+```
+PKG_CONFIG_PATH=/opt/homebrew/lib/pkgconfig make
+```
+
+### Windows — cross-compilation from Linux using MXE
+
+```
+make CROSS=x86_64-w64-mingw32.static-    # 64-bit
+make CROSS=i686-w64-mingw32.static-      # 32-bit
+```
+
+The executable is placed in `bin/fue.exe`.
+
+### Other targets
+
+```
+make clean       # remove object files and executable
+make distclean   # remove obj/ and bin/
+make install     # copy bin/fue to /usr/local/bin
+make uninstall   # remove /usr/local/bin/fue
+```
+
+## Command-line usage
+
+```
+fue input [eml|aml] [chk|nochk]
+```
+
+| Argument        | Description |
+|-----------------|-------------|
+| `input`         | model-data file name (without `.inp` extension) |
+| `eml`\|`aml`    | exact \| approximate maximum likelihood (default: `eml`) |
+| `chk`\|`nochk`  | check \| skip MA invertibility check (default: `chk`) |
+
+FUE produces a text output file `input.out` and, when Gnuplot is available,
+a PostScript report `input.ps` with high-resolution plots.
+
+## Example
+
+The `examples/` directory contains `PU.1.inp`, a sample file with US CPI data
+from January 2000 to December 2008.
+
+```
+cd examples
+fue PU.1
+gv --orientation=landscape --scale=2 PU.1.ps
+```
+
+## Integration with external editors
+
+### KILE
+
+1. `Settings` → `Configure Kile...` → `Build` → `New Tool...`
+2. Name: `FUE`; type: `<Custom>`
+3. **General** tab: Command = `fue`, Options = `'%S'`
+4. **Advanced** tab: Type = `Run in Konsole`; Source Extension = `inp`; Target Extension = `out`
+5. **Menu** tab: Add to Build menu = `Other`
+
+## Bug reports
+
+David E. Guerrero — davidesg@ucm.es
