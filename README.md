@@ -56,12 +56,13 @@ brew install gsl gnuplot
 
 ```
 fue-1.13.1/
-├── src/        source files (.c)
-├── include/    header files (.h)
-├── obj/        compiled objects (created by make)
-├── bin/        executable (created by make)
+├── src/           source files (.c)
+├── include/       header files (.h)
+├── obj/           compiled objects (created by make)
+├── bin/           executable (created by make)
 ├── Makefile
-└── README.md
+├── README.md
+└── README.es.md
 ```
 
 ## Building
