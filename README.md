@@ -14,9 +14,10 @@ License: GNU General Public License v2 or later.
 3. [File structure](#file-structure)
 4. [Building](#building)
 5. [Command-line usage](#command-line-usage)
-6. [Example](#example)
-7. [Integration with external editors](#integration-with-external-editors)
-8. [Bug reports](#bug-reports)
+6. [Workflow with FUF and gtk\_fue](#workflow-with-fuf-and-gtk_fue)
+7. [Example](#example)
+8. [Integration with external editors](#integration-with-external-editors)
+9. [Bug reports](#bug-reports)
 
 ---
 
@@ -106,28 +107,57 @@ make uninstall   # remove /usr/local/bin/fue
 ## Command-line usage
 
 ```
-fue input [eml|aml] [chk|nochk]
+fue input [eml|aml] [chk|nochk] [-f [horizon]]
 ```
 
-| Argument        | Description |
-|-----------------|-------------|
-| `input`         | model-data file name (without `.inp` extension) |
-| `eml`\|`aml`    | exact \| approximate maximum likelihood (default: `eml`) |
-| `chk`\|`nochk`  | check \| skip MA invertibility check (default: `chk`) |
+| Argument           | Description |
+|--------------------|-------------|
+| `input`            | model-data file name (without `.inp` extension) |
+| `eml`\|`aml`       | exact \| approximate maximum likelihood (default: `eml`) |
+| `chk`\|`nochk`     | check \| skip MA invertibility check (default: `chk`) |
+| `-f [horizon]`     | generate `forecast_input.inp` for FUF; `horizon` is the number of forecast periods (default: 24) |
 
 FUE produces a text output file `input.out` and, when Gnuplot is available,
 a PostScript report `input.ps` with high-resolution plots.
 
+## Workflow with FUF and gtk\_fue
+
+The normal workflow is:
+
+1. **Estimate** with FUE:
+   ```
+   fue mymodel
+   ```
+   Reads `mymodel.inp` and writes the estimation report `mymodel.out`.
+
+2. **Generate the forecast input file**:
+   ```
+   fue mymodel -f [horizon]
+   ```
+   Writes `forecast_mymodel.inp` containing the estimated parameters,
+   the forecast horizon (default: 24 periods), and the innovation variance.
+
+3. **Compute the forecasts** with FUF:
+   ```
+   fuf forecast_mymodel
+   ```
+   Reads `forecast_mymodel.inp` and produces the forecast report.
+
+From **gtk\_fue**, steps 2 and 3 are triggered automatically by the
+*Forecast* button in the toolbar.
+
 ## Example
 
-The `examples/` directory contains `PU.1.inp`, a sample file with US CPI data
-from January 2000 to December 2008.
+Write a model specification file `mymodel.inp`, then:
 
 ```
-cd examples
-fue PU.1
-gv --orientation=landscape --scale=2 PU.1.ps
+fue mymodel
+fue mymodel -f 12
+fuf forecast_mymodel
 ```
+
+The `src/` directory of the companion **fue-1.13** release contains a sample
+`examples/PU.1.inp` file with US CPI data from January 2000 to December 2008.
 
 ## Integration with external editors
 

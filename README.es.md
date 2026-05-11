@@ -15,9 +15,10 @@ Licencia: GNU General Public License v2 o posterior.
 3. [Estructura de archivos](#estructura-de-archivos)
 4. [Compilación](#compilación)
 5. [Uso en línea de comandos](#uso-en-línea-de-comandos)
-6. [Ejemplo](#ejemplo)
-7. [Integración con editores externos](#integración-con-editores-externos)
-8. [Reportar errores](#reportar-errores)
+6. [Flujo de trabajo con FUF y gtk\_fue](#flujo-de-trabajo-con-fuf-y-gtk_fue)
+7. [Ejemplo](#ejemplo)
+8. [Integración con editores externos](#integración-con-editores-externos)
+9. [Reportar errores](#reportar-errores)
 
 ---
 
@@ -107,29 +108,59 @@ make uninstall   # elimina /usr/local/bin/fue
 ## Uso en línea de comandos
 
 ```
-fue input [eml|aml] [chk|nochk]
+fue input [eml|aml] [chk|nochk] [-f [horizonte]]
 ```
 
-| Argumento       | Descripción |
-|-----------------|-------------|
-| `input`         | nombre del archivo de modelo-datos (sin extensión `.inp`) |
-| `eml`\|`aml`    | máxima verosimilitud exacta \| aproximada (por defecto: `eml`) |
-| `chk`\|`nochk`  | comprobar \| no comprobar invertibilidad MA (por defecto: `chk`) |
+| Argumento           | Descripción |
+|---------------------|-------------|
+| `input`             | nombre del archivo de modelo-datos (sin extensión `.inp`) |
+| `eml`\|`aml`        | máxima verosimilitud exacta \| aproximada (por defecto: `eml`) |
+| `chk`\|`nochk`      | comprobar \| no comprobar invertibilidad MA (por defecto: `chk`) |
+| `-f [horizonte]`    | genera `forecast_input.inp` para FUF; `horizonte` es el número de períodos a predecir (por defecto: 24) |
 
 FUE genera un archivo de salida `input.out` con resultados en texto y,
 si Gnuplot está disponible, un archivo `input.ps` con los gráficos en alta
 definición.
 
+## Flujo de trabajo con FUF y gtk\_fue
+
+El flujo de trabajo habitual es:
+
+1. **Estimar** con FUE:
+   ```
+   fue mimodelo
+   ```
+   Lee `mimodelo.inp` y escribe el informe de estimación `mimodelo.out`.
+
+2. **Generar el fichero de entrada para la predicción**:
+   ```
+   fue mimodelo -f [horizonte]
+   ```
+   Escribe `forecast_mimodelo.inp` con los parámetros estimados, el horizonte
+   de predicción (por defecto: 24 períodos) y la varianza de innovación.
+
+3. **Calcular las predicciones** con FUF:
+   ```
+   fuf forecast_mimodelo
+   ```
+   Lee `forecast_mimodelo.inp` y produce el informe de predicción.
+
+Desde **gtk\_fue**, los pasos 2 y 3 se ejecutan automáticamente al pulsar
+el botón *Forecast* de la barra de herramientas.
+
 ## Ejemplo
 
-En la carpeta `examples/` se incluye el archivo `PU.1.inp` con datos del IPC
-de EE.UU. desde enero de 2000 hasta diciembre de 2008.
+Escriba un fichero de especificación `mimodelo.inp` y ejecute:
 
 ```
-cd examples
-fue PU.1
-gv --orientation=landscape --scale=2 PU.1.ps
+fue mimodelo
+fue mimodelo -f 12
+fuf forecast_mimodelo
 ```
+
+El directorio `src/` de la versión **fue-1.13** incluye el archivo de ejemplo
+`examples/PU.1.inp` con datos del IPC de EE.UU. desde enero de 2000 hasta
+diciembre de 2008.
 
 ## Integración con editores externos
 
