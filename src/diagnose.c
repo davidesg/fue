@@ -869,7 +869,8 @@ void File_PlotSer( struct Tseries *ser )
           Tmpstr[54] = '@';
           }
        Pos = (ser->data[i] - rtmp3) / rtmp4 * HorInc;
-       Tmpstr[27 + iround( Pos )] = '*';
+       { int idx = 27 + iround( Pos );
+         if ( idx >= 0 && idx <= 54 ) Tmpstr[idx] = '*'; }
        if ( Tmpstr[27] == ' ' )
           Tmpstr[27] = '|';
        if ( Tmpstr[27 + iround( BandPos1 )] == ' ' )
