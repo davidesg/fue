@@ -3192,10 +3192,6 @@ fprintf( texputv, ")");
 /* END DG ***********************************************************************/
 
 
-   if ( forecast_flag ) {
-      fprintf( preputv, " Number and frequencies of seasonal AR operators:\n" );
-      fprintf( preputv, "0\n**" );
-   }
    fprintf( preputv, " Number and orders of annual AR operators:\n");
 
    fprintf( preputv, "%d", Tm.NumAr2 );
@@ -3292,10 +3288,6 @@ fprintf( texputv, ")");
 
 /* END DG ***********************************************************************/
 
-   if ( forecast_flag ) {
-      fprintf( preputv, " Number and frequencies of seasonal MA operators:\n" );
-      fprintf( preputv, "0\n**" );
-   }
    fprintf( preputv, " Number and orders of anual MA operators:\n");
 
    fprintf( preputv, "%d", Tm.NumMa2 );
@@ -3385,10 +3377,6 @@ fprintf( texputv, ")");
            fprintf( preputv, "\n**" );
    }
 */
-   if ( forecast_flag ) {
-      fprintf( preputv, " Number and frequencies of annual AR(2) operators with fixed frequency:\n" );
-      fprintf( preputv, "0\n**" );
-   }
    fprintf( preputv, " Number and frequencies of regular MA(2) operators with fixed frequency:\n");
 
    fprintf( preputv, "%d", Tm.NumMa1f );
@@ -3446,10 +3434,6 @@ fprintf( texputv, ")");
            fprintf( preputv, "\n**" );
    }
 */
-   if ( forecast_flag ) {
-      fprintf( preputv, " Number and frequencies of annual MA(2) operators with fixed frequency:\n" );
-      fprintf( preputv, "0\n**" );
-   }
    fprintf( preputv, " Mean parameter (mu):\n");
    if ( Tm.Imu == 1 )
       {
