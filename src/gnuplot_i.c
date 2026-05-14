@@ -61,7 +61,7 @@
 #ifndef _WIN32
 #define GNUPLOT_EXEC "gnuplot"
 #else
-#define GNUPLOT_EXEC "pgnuplot.exe"
+#define GNUPLOT_EXEC "gnuplot.exe"
 #endif
 
 /*---------------------------------------------------------------------------
@@ -91,7 +91,7 @@ int mkstemp (char *name) {
   i = open(name, O_RDWR | O_CREAT);
   if (i != -1) {
     DWORD dwFileAttr = GetFileAttributes(name);
-    SetFileAttributes(name, dwFileAttr & !FILE_ATTRIBUTE_READONLY);
+    SetFileAttributes(name, dwFileAttr & ~FILE_ATTRIBUTE_READONLY);
   }
   return i;
 }

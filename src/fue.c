@@ -1,9 +1,9 @@
 /***************************************************************************
  *   fue.c                                                                 *
  *   Exact maximum likelihood estimation of time series models:            *
- *   Copyright (C) 2009 by Arthur B Treadway & D.E Guerrero & J.A. Mauricio     *
- *   abtreadway@telefonica.net &  warriord@rocketmail.com                  *
- *               *
+ *   Copyright (C)2009 by Arthur B Treadway & D.E Guerrero & J.A. Mauricio *
+ *   davidesg@ucm.es                                                       *
+ *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
@@ -2236,7 +2236,7 @@ fprintf( texputv, ")");
    }
 
 
-/* END DG **********************************************************************/
+/* DG **********************************************************************/
 
 
 /* [11.4]: Phis for each annual AR factor (if any):                          */

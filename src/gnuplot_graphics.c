@@ -133,8 +133,8 @@ void gnuplot_File_PlotSer ( struct Tseries *ser, int tsnobs, int tmornsop, int t
    size = SeriesSize  (  n ,  f  );
 
 
-	if ( size == 2 )  gnuplot_cmd(h, "set terminal postscript eps enhance 'Arial' 16") ;
-	else gnuplot_cmd(h, "set terminal postscript eps enhance 'Arial' 15") ;
+	if ( size == 2 )  gnuplot_cmd(h, "set terminal postscript eps enhance 'Helvetica' 16") ;
+	else gnuplot_cmd(h, "set terminal postscript eps enhance 'Helvetica' 15") ;
 
 	gnuplot_cmd(h, "set output \"%s.eps\"",   x11out);
 
@@ -167,11 +167,11 @@ void gnuplot_File_PlotSer ( struct Tseries *ser, int tsnobs, int tmornsop, int t
        gnuplot_cmd(h,"set style line 4 lt 1 lw 2.5");
 
        if( size == 2 ){
-         gnuplot_cmd(h,"set xlabel '@^{/E=30  -}_{}{/Times-Roman=24 w} ( @^^{/Symbol=19 \331}_{}{/Symbol=24 s}_{@^{/E=24  -}_{}{/Times-Roman=18 w}} ) = %2.2f{/Arial %} (%2.2f{/Arial %})&{def}&{def}&{def}&{def}&{def} @^^{/Symbol=19 \331}_{}{/Symbol=24 s}_{/Times-Roman=18 w} =  %2.2f{/Arial %} ' 3.4,-2.6 font 'Arial,19'",
+         gnuplot_cmd(h,"set xlabel '@^{/E=30  -}_{}{/Times-Roman=24 w} ( @^^{/Symbol=19 \331}_{}{/Symbol=24 s}_{@^{/E=24  -}_{}{/Times-Roman=18 w}} ) = %2.2f{/Helvetica %} (%2.2f{/Helvetica %})&{def}&{def}&{def}&{def}&{def} @^^{/Symbol=19 \331}_{}{/Symbol=24 s}_{/Times-Roman=18 w} =  %2.2f{/Helvetica %} ' 3.4,-2.6 font 'Helvetica,19'",
                      ((ser->mean)*100),  ((Stdev( ser->data, ser->nobs) / sqrt( ser->nobs ))*100), ((Stdev( ser->data, ser->nobs))*100));
        }
        else{
-	 gnuplot_cmd(h,"set xlabel '@^{/E=24  -}_{}{/Times-Roman=21 w} ( @^^{/Symbol=18 \331}_{}{/Symbol=22 s}_{@^{/E=22  -}_{}{/Times-Roman=18 w}} ) = %2.2f{/Arial %} (%2.2f{/Arial %})&{def}&{def}&{def}&{def}&{def}@^^{/Symbol=18 \331}_{}{/Symbol=22 s}_{/Times-Roman=18 w} =  %2.2f{/Arial %} ' -2,-3 font 'Arial,17'",
+	 gnuplot_cmd(h,"set xlabel '@^{/E=24  -}_{}{/Times-Roman=21 w} ( @^^{/Symbol=18 \331}_{}{/Symbol=22 s}_{@^{/E=22  -}_{}{/Times-Roman=18 w}} ) = %2.2f{/Helvetica %} (%2.2f{/Helvetica %})&{def}&{def}&{def}&{def}&{def}@^^{/Symbol=18 \331}_{}{/Symbol=22 s}_{/Times-Roman=18 w} =  %2.2f{/Helvetica %} ' -2,-3 font 'Helvetica,17'",
                      ((ser->mean)*100), ((Stdev( ser->data, ser->nobs) / sqrt( ser->nobs ))*100), ((Stdev( ser->data, ser->nobs))*100));
 	}
 
@@ -200,13 +200,13 @@ double  tics_size;
 
        if (f>1) {
 	   for (i = 0; i <= ((tsnobs-1)/(2*f)); i++ )
-		   gnuplot_cmd(h,"set label %d '%d' at %d, -%.2f center font 'Arial,17.2'",
+		   gnuplot_cmd(h,"set label %d '%d' at %d, -%.2f center font 'Helvetica,17.2'",
 			  i+1 , tsby+2*i,(-tmornsop+2*f*i), tics_size );
 	 }
 
        else {
 	   for (i = 0; i <= ((tsnobs+tmornsop-1)/(2*f*10)); i++ )
-		   gnuplot_cmd(h,"set label %d '%d' at %d, -%.2f center font 'Arial,17.2'",
+		   gnuplot_cmd(h,"set label %d '%d' at %d, -%.2f center font 'Helvetica,17.2'",
 			       i+1 , tsby+2*i*10-1, (-tmornsop+2*f*i*10), tics_size );
 	     }
 
@@ -247,8 +247,8 @@ void gnuplot_File_CorrSer ( struct Tseries *ser, int npar, int nrdiff, int nadif
 
 
 
-	if (lags >= 30)  gnuplot_cmd(h, "set terminal postscript eps enhance 'Arial' 16");
-	else gnuplot_cmd(h, "set terminal postscript eps enhance 'Arial' 15");
+	if (lags >= 30)  gnuplot_cmd(h, "set terminal postscript eps enhance 'Helvetica' 16");
+	else gnuplot_cmd(h, "set terminal postscript eps enhance 'Helvetica' 15");
 
 //	if (nadiff == 0) gnuplot_cmd(h, "set output \"acf_d%d%s.eps\"", nrdiff, x11out);
         gnuplot_cmd(h, "set output \"acf_%s.eps\"", x11out);
@@ -277,8 +277,8 @@ void gnuplot_File_CorrSer ( struct Tseries *ser, int npar, int nrdiff, int nadif
 //	else if  (( f==1 ) && (n > 200)) gnuplot_cmd(h,"set origin .02,0.476");
   	else gnuplot_cmd(h,"set origin 0.02,0.38");
 
-       if ( lags >=  30 ) gnuplot_cmd(h,"set title 'acf' -2.2,-.21 font 'Arial,20'");
-       else  gnuplot_cmd(h,"set title 'acf' -2.05,-.21 font 'Arial,18'");
+       if ( lags >=  30 ) gnuplot_cmd(h,"set title 'acf' -2.2,-.21 font 'Helvetica,20'");
+       else  gnuplot_cmd(h,"set title 'acf' -2.05,-.21 font 'Helvetica,18'");
 
 
 /* Define the ripe of the acf  graph  */
@@ -351,9 +351,9 @@ void gnuplot_File_CorrSer ( struct Tseries *ser, int npar, int nrdiff, int nadif
 /* Allocate the Ljung-Box statistic */
 
   if( (f>4) || (f==1) && (n>200)  )  
-  gnuplot_cmd(h,"set xlabel 'Q( %d ) = %2.1f' -4.1,-2.1 font 'Arial,17'", lags - npar, ChiTest( corr, lags, n ));
+  gnuplot_cmd(h,"set xlabel 'Q( %d ) = %2.1f' -4.1,-2.1 font 'Helvetica,17'", lags - npar, ChiTest( corr, lags, n ));
   else
-  gnuplot_cmd(h,"set xlabel 'Q( %d ) = %2.1f' -1.4,-1.1 font 'Arial,15'", lags - npar, ChiTest( corr, lags, n ));
+  gnuplot_cmd(h,"set xlabel 'Q( %d ) = %2.1f' -1.4,-1.1 font 'Helvetica,15'", lags - npar, ChiTest( corr, lags, n ));
 
     gnuplot_plot_acf(h, corr, lags, n, cmax, "");
 
@@ -426,8 +426,8 @@ AbsMax =  SeriesMax (  a,   n );
 size = SeriesSize  (  n ,  f  );
 
 
-	if ( size == 2 )  gnuplot_cmd(h, "set terminal postscript eps enhance 'Arial' 16") ;
-	else gnuplot_cmd(h, "set terminal postscript eps enhance 'Arial' 15") ;
+	if ( size == 2 )  gnuplot_cmd(h, "set terminal postscript eps enhance 'Helvetica' 16") ;
+	else gnuplot_cmd(h, "set terminal postscript eps enhance 'Helvetica' 15") ;
 
 
 /* Allocate the output file name */
@@ -474,11 +474,11 @@ size = SeriesSize  (  n ,  f  );
        gnuplot_cmd(h,"set style line 4 lt 1 lw 2.5");
 
        if( size == 2 ){
-         gnuplot_cmd(h,"set xlabel '@^{/E=30-}_{}{/Times-Roman=24 w} ( @^^{/Symbol=19 \331}_{}{/Symbol=24 s}_{@^{/E=24-}_{}{/Times-Roman=18 w}} ) = %2.2f{/Arial %} (%2.2f{/Arial %})&{def}&{def}&{def}&{def}&{def} @^^{/Symbol=19 \331}_{}{/Symbol=24 s}_{/Times-Roman=18 w} =  %2.2f{/Arial %} ' offset 3.4,-2.6 font 'Arial,19'",
+         gnuplot_cmd(h,"set xlabel '@^{/E=30-}_{}{/Times-Roman=24 w} ( @^^{/Symbol=19 \331}_{}{/Symbol=24 s}_{@^{/E=24-}_{}{/Times-Roman=18 w}} ) = %2.2f{/Helvetica %} (%2.2f{/Helvetica %})&{def}&{def}&{def}&{def}&{def} @^^{/Symbol=19 \331}_{}{/Symbol=24 s}_{/Times-Roman=18 w} =  %2.2f{/Helvetica %} ' offset 3.4,-2.6 font 'Helvetica,19'",
                      ((ser->mean)*100),  ((Stdev( ser->data, ser->nobs) / sqrt( ser->nobs ))*100), ((Stdev( ser->data, ser->nobs))*100));
        }
        else{
-	 gnuplot_cmd(h,"set xlabel '@^{/E=24-}_{}{/Times-Roman=21 w} ( @^^{/Symbol=18 \331}_{}{/Symbol=22 s}_{@^{/E=22-}_{}{/Times-Roman=18 w}} ) = %2.2f{/Arial %} (%2.2f{/Arial %})&{def}&{def}&{def}&{def}&{def}@^^{/Symbol=18 \331}_{}{/Symbol=22 s}_{/Times-Roman=18 w} =  %2.2f{/Arial %} ' offset -2,-3 font 'Arial,17'",
+	 gnuplot_cmd(h,"set xlabel '@^{/E=24-}_{}{/Times-Roman=21 w} ( @^^{/Symbol=18 \331}_{}{/Symbol=22 s}_{@^{/E=22-}_{}{/Times-Roman=18 w}} ) = %2.2f{/Helvetica %} (%2.2f{/Helvetica %})&{def}&{def}&{def}&{def}&{def}@^^{/Symbol=18 \331}_{}{/Symbol=22 s}_{/Times-Roman=18 w} =  %2.2f{/Helvetica %} ' offset -2,-3 font 'Helvetica,17'",
                      ((ser->mean)*100), ((Stdev( ser->data, ser->nobs) / sqrt( ser->nobs ))*100), ((Stdev( ser->data, ser->nobs))*100));
 	}
 
@@ -506,13 +506,13 @@ double  tics_size;
 
 	if ( f == 1 ){
 		   for (i = 0; i <= ((tsnobs+tmornsop-1)/(2*f*10)); i++ )
-		   gnuplot_cmd(h,"set label %d '%d' at %d, -%.2f center font 'Arial,17.2'",
+		   gnuplot_cmd(h,"set label %d '%d' at %d, -%.2f center font 'Helvetica,17.2'",
 			       i+1 , tsby+2*i*10, (-tmornsop+2*f*i*10), tics_size );
 	}
 
        else {
 	   for (i = 0; i <= ((tsnobs-1)/(2*f)); i++ )
-		   gnuplot_cmd(h,"set label %d '%d' at %d, -%.2f center font 'Arial,17.2'",
+		   gnuplot_cmd(h,"set label %d '%d' at %d, -%.2f center font 'Helvetica,17.2'",
 			  i+1 , tsby+2*i,(-tmornsop+2*f*i), tics_size );
 	 }
 
@@ -558,8 +558,8 @@ else cmax = Acf_Pacf_Max ( ser,  lags );
 
 /* Allocate acf title, the size depend of the global size of the figure */
 
-  if ( lags >=  30 )  gnuplot_cmd(h,"set title 'acf' offset -2.2,-.21 font 'Arial,20'");
-  else  gnuplot_cmd(h,"set title 'acf' offset -2.05,-.21 font 'Arial,18'");
+  if ( lags >=  30 )  gnuplot_cmd(h,"set title 'acf' offset -2.2,-.21 font 'Helvetica,20'");
+  else  gnuplot_cmd(h,"set title 'acf' offset -2.05,-.21 font 'Helvetica,18'");
 
 /* Define the ripe of the acf  graph  */
 
@@ -632,9 +632,9 @@ else cmax = Acf_Pacf_Max ( ser,  lags );
 
 
   if((f>4) || (f==1) && (n>200))  
-  gnuplot_cmd(h,"set xlabel 'Q( %d ) = %2.1f' offset -4.1,-2.1 font 'Arial,17'", lags - npar, ChiTest( corr, lags, n ));
+  gnuplot_cmd(h,"set xlabel 'Q( %d ) = %2.1f' offset -4.1,-2.1 font 'Helvetica,17'", lags - npar, ChiTest( corr, lags, n ));
   else
-  gnuplot_cmd(h,"set xlabel 'Q( %d ) = %2.1f' offset -1.4,-1.1 font 'Arial,15'", lags - npar, ChiTest( corr, lags, n ));
+  gnuplot_cmd(h,"set xlabel 'Q( %d ) = %2.1f' offset -1.4,-1.1 font 'Helvetica,15'", lags - npar, ChiTest( corr, lags, n ));
 
     gnuplot_plot_acf(h, corr, lags, n, cmax, "");
 
@@ -787,7 +787,7 @@ for ( i =  1; i <=  NumCat; i++ )
 
 */
 
-    gnuplot_cmd(h, "set terminal postscript eps enhance 'Arial' 18");
+    gnuplot_cmd(h, "set terminal postscript eps enhance 'Helvetica' 18");
 
     gnuplot_cmd(h, "set output \"hist_%s.eps\"", x11out) ;
 //    gnuplot_cmd(h, "set output \"hist_d%dD%d%s.eps\"", nrdiff, nadiff, x11out) ;
@@ -820,13 +820,13 @@ for ( i =  1; i <=  NumCat; i++ )
        gnuplot_cmd(h,"set tics scale 1");
 //       gnuplot_cmd(h,"set ticslevel  .4");
        gnuplot_cmd(h,"set mxtics 2");
-    gnuplot_cmd(h,"set ylabel '\%' 0,0 font 'Arial,24'");
+    gnuplot_cmd(h,"set ylabel '\%' 0,0 font 'Helvetica,24'");
     gnuplot_cmd(h,"set tics out");
     gnuplot_cmd(h,"set grid xtics ytics mxtics mytics");
     gnuplot_cmd(h,"set xrange [-%f:%f]", xmax, xmax );
     gnuplot_cmd(h,"set xzeroaxis");
     gnuplot_setstyle(h,"boxes");
-    gnuplot_cmd(h,"set xlabel 'S = %2.1f       K = %2.1f        JB = %2.1f' 0,0 font 'Arial,20'",  ser->skew, ser->kurt, ser->jarquebera);
+    gnuplot_cmd(h,"set xlabel 'S = %2.1f       K = %2.1f        JB = %2.1f' 0,0 font 'Helvetica,20'",  ser->skew, ser->kurt, ser->jarquebera);
 
     gnuplot_cmd (h,"Gauss(x,mu,sigma) = 1./(sigma*sqrt(2*pi)) * exp( -(x-mu)**2 / (2*sigma**2) )");
 
@@ -870,7 +870,7 @@ for ( i = 1; i <= ng; i++ )
 	}
 AbsMax += .1*AbsMax;
 
-gnuplot_cmd(h, "set terminal postscript eps enhance 'Arial' 17");
+gnuplot_cmd(h, "set terminal postscript eps enhance 'Helvetica' 17");
 gnuplot_cmd(h, "set output \"m_dt_%s.eps\"", x11out);
 gnuplot_cmd(h,"set title '%s' font 'bold,22'", seriesname);
 gnuplot_setstyle(h,"points");
@@ -882,8 +882,8 @@ gnuplot_cmd(h,"set size square");
 gnuplot_cmd(h,"set grid");
 gnuplot_cmd(h,"set grid xtics lt 1");
 gnuplot_cmd(h,"set grid ytics lt 1");
-gnuplot_cmd(h,"set xlabel 'Mean' 0,0 font 'Arial,20'");
-gnuplot_cmd(h,"set ylabel 'Standard-Deviation' 0,0 font 'Arial,20'");
+gnuplot_cmd(h,"set xlabel 'Mean' 0,0 font 'Helvetica,20'");
+gnuplot_cmd(h,"set ylabel 'Standard-Deviation' 0,0 font 'Helvetica,20'");
 /* Debug lines
 for ( i = 1; i <= ng; i++ )
 	{
