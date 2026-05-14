@@ -3,7 +3,7 @@
 **Free Univariate Estimation** — estimación de modelos de series temporales  
 por máxima verosimilitud exacta no condicionada.
 
-Copyright (C) 2026 A.B. Treadway & D.E. Guerrero  
+Copyright (C) 1995-1996 J.A. Mauricio; 2009-2026 A.B. Treadway & D.E. Guerrero  
 Licencia: GNU General Public License v2 o posterior.
 
 ---
