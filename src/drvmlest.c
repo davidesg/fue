@@ -2,7 +2,21 @@
 /*****************************************************************************/
 /*  DRVMLEST.C                                                               */
 /*  Driver module for exact maximum likelihood estimation.                   */
-/*  Copyright (C) Jos‚ Alberto Mauricio, 1995.                               */
+/*  Copyright (C) JosÃ© Alberto Mauricio, 1995.                               */
+/*                                                                           */
+/*  This program is free software; you can redistribute it and/or modify    */
+/*  it under the terms of the GNU General Public License as published by     */
+/*  the Free Software Foundation; either version 2 of the License, or       */
+/*  (at your option) any later version.                                      */
+/*                                                                           */
+/*  This program is distributed in the hope that it will be useful,         */
+/*  but WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the             */
+/*  GNU General Public License for more details.                             */
+/*                                                                           */
+/*  You should have received a copy of the GNU General Public License        */
+/*  along with this program; if not, write to the Free Software Foundation,  */
+/*  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.     */
 /*****************************************************************************/
 
 #include "fue.h"            /* Header file (prototype declarations)          */
@@ -27,7 +41,7 @@ void est( void (*cast)( real *, struct Tvarma *, int *, int, int ),
 /*****************************************************************************/
 /*                                                                           */
 /* cast ->   : casting routine [drv.c].                                      */
-/* npar ->   : n§ of parameters to estimate.                                 */
+/* npar ->   : nï¿½ of parameters to estimate.                                 */
 /* par <->   : -> initial estimate (guess); <- final estimate (solution).    */
 /* dev <-    : estimated standard deviations at final estimate.              */
 /* cov <-    : estimated covariance matrix at final estimate.                */

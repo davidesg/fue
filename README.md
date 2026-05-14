@@ -2,7 +2,7 @@
 
 **Free Univariate Estimation** — exact maximum likelihood estimation of univariate time series models.
 
-Copyright (C) 2026 A.B. Treadway & D.E. Guerrero  
+Copyright (C) 1995-1996 J.A. Mauricio; 2009-2026 A.B. Treadway & D.E. Guerrero  
 License: GNU General Public License v2 or later.
 
 ---
