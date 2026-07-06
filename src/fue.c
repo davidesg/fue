@@ -207,7 +207,7 @@ int main( int argc, char *argv[] )
    fprintf(preputv, "************************************************\n");
    if ( !forecast_flag ) {
     fprintf(preputv, "*        Input file for program DRVUS          *\n");
-    fprintf(preputv, "* Copyright (C) 1996 Jos? Alberto Mauricio     *\n");
+    fprintf(preputv, "* Copyright (C) 1996 Jose Alberto Mauricio     *\n");
    } else {
     fprintf(preputv, "*        Input file for program FUF            *\n");
     fprintf(preputv, "* Copyright (C) 2009 David E. Guerrero         *\n");
